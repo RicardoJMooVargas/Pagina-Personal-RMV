@@ -1,7 +1,7 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 import "../Components/SimpleCard";
-
+import "../Components/SubComponents/S-Label.ts";
 @customElement("projects-page")
 export class ProjectsPage extends LitElement {
 
@@ -12,7 +12,9 @@ export class ProjectsPage extends LitElement {
             <div class="skills-category">
                 <h2>Skills</h2>
                 <div class="skills">
-                    Coming soon..................
+                    <s-label></s-label>
+                    <s-label></s-label>
+                    <s-label></s-label>
                 </div>
             </div>
             <div class="project-category">
