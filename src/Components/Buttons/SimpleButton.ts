@@ -3,16 +3,15 @@ import { customElement, property } from "lit/decorators.js";
 
 @customElement('simple-button')
 export class SimpleButton extends LitElement {
-    @property({ type: String })
-    color = "secondary";
-
-    @property({ type: String})
-    type = "simple";
+    @property({ type: String }) color = "secondary";
+    @property({ type: String}) type = "simple";
+    @property({ type: String }) text = 'button'
+    @property({type: Number}) size = 200;
 
     render() {
         return html`
         <button class=${this.color + "-" + this.type}>
-            <slot></slot>
+            ${ this.text }
         </button>
         `;
     }

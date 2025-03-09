@@ -1,9 +1,9 @@
 import {LitElement, html, css} from 'lit'
 import { customElement } from 'lit/decorators.js'
-import "../Components/SubComponents/S-Image.ts"
+import "../../Components/SubComponents/S-Image.ts"
 
 @customElement('info-page')
-export class InfoPage extends LitElement {
+export class InfoSection extends LitElement {
     render() {
         return html`
         <div class="container-info">

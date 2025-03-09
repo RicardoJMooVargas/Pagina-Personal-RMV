@@ -1,9 +1,9 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
-import "../Components/SimpleCard";
-import "../Components/SubComponents/S-Label.ts";
+import "../../Components/SimpleCard.ts";
+import "../../Components/SubComponents/S-Label.ts";
 @customElement("projects-page")
-export class ProjectsPage extends LitElement {
+export class ProjectsSection extends LitElement {
 
 
     render() {

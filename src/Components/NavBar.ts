@@ -1,6 +1,7 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
-import "./SimpleButton";
+import "./Buttons/SimpleButton.ts";
+import "./Dropdowns/DropdownMenu.ts"
 
 @customElement('nav-bar')
 export class NavBar extends LitElement {
@@ -24,9 +25,7 @@ export class NavBar extends LitElement {
                     </ul>
                 </div>
                 <div class="nav-right">
-                    <simple-button color="green" type="simple">
-                        menu
-                    </simple-button>
+                    <simple-button color="green" type="simple" text="Menu"/>
                 </div>
             </nav>
         `;
@@ -42,7 +41,7 @@ export class NavBar extends LitElement {
             width: 70%;
             border-radius: 8px;
             align-items: center;
-            overflow: hidden; /* Asegura que el fondo no se desborde */
+            overflow: visible; /* Asegura que el fondo no se desborde */
             /* transparencies */
             background-color: rgba(255, 255, 255, 0.8);
             z-index: 10; // procura que el objeto siempre este por encima de los demas

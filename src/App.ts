@@ -1,9 +1,9 @@
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import './index.css';
-import './pages/ResourcesPage';
-import "./pages/ProjectsPage.ts";
-import "./pages/InfoPage"
+import './pages/Home/ResourcesSection.ts';
+import "./pages/Home/ProjectsSection.ts";
+import "./pages/Home/InfoSection.ts"
 import './Components/NavBar';
 import "./Components/ContactsBar.ts"
 
@@ -54,7 +54,6 @@ class AppRouter extends LitElement {
             // POSITIONS
             bottom: 0;  
             left: 0;
-            width: 100%;
             min-height: 90px;
             text-align: center;
             padding: 16px;

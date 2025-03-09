@@ -1,9 +1,9 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
-import "../Components/SimpleButton.ts"
+import "../../Components/Buttons/SimpleButton.ts"
 
 @customElement('resources-page')
-export class ResourcesPage extends LitElement {
+export class ResourcesSection extends LitElement {
     openLink(){
         window.open('https://drive.google.com/drive/folders/18BRzUAUO1v1VmHjOnGNkeM_tkZaKbAnz?usp=sharing', '_blank');
     }
