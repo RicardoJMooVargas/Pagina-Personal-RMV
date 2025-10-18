@@ -1,20 +1,32 @@
-# Usa una imagen base de Node.js
-FROM node:18
+# Stage 1: Build the application
+FROM node:20-alpine AS build
 
-# Crea y establece el directorio de trabajo
+# Set working directory
 WORKDIR /app
 
-# Copia el package.json y package-lock.json (o yarn.lock)
+# Copy package files
 COPY package*.json ./
 
-# Instala las dependencias del proyecto
-RUN npm install
+# Install dependencies (use npm ci for production builds)
+RUN npm ci
 
-# Copia el código fuente al contenedor
+# Copy source code
 COPY . .
 
-# Expone el puerto en el que el servidor de desarrollo de Vite se ejecuta
-EXPOSE 5174
+# Build the application
+RUN npm run build
 
-# Comando para iniciar el servidor de desarrollo
-CMD ["npm", "run", "dev"]
+# Stage 2: Production server with Nginx
+FROM nginx:1.27-alpine AS production
+
+# Copy built application from build stage
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copy custom nginx configuration for SPA routing
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
