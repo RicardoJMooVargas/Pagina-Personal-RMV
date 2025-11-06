@@ -1,15 +1,23 @@
 import { LitElement, html, css } from "lit";
-import { customElement } from "lit/decorators.js";
-import "./Buttons/SimpleButton.ts";
-import "./Dropdowns/DropdownMenu.ts"
+import { customElement, property } from "lit/decorators.js";
 
 @customElement('nav-bar')
 export class NavBar extends LitElement {
+    @property({ type: Function })
+    navigate?: (path: string) => void;
+
+    handleNavigation(e: Event, path: string) {
+        e.preventDefault();
+        if (this.navigate) {
+            this.navigate(path);
+        }
+    }
+
     render() {
         return html`
             <nav>
                 <div class="nav-logo">
-                    <a href="#">
+                    <a href="/" @click=${(e: Event) => this.handleNavigation(e, '/')}>
                         <svg width="34px" height="34px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16 11L17.6965 12.5268C19.239 13.9151 20.0103 14.6093 20.0103 15.5C20.0103 16.3907 19.239 17.0849 17.6965 18.4732L16 20" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/>
                             <path d="M13.9868 5L11.9934 12.5L10 20" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/>
@@ -19,13 +27,9 @@ export class NavBar extends LitElement {
                 </div>
                 <div class="nav-body">
                     <ul class="list">
-                        <li><a href="#">👨‍💻About Me</a></li>
-                        <li><a href="#">🛠️Projects</a></li>
-                        <li><a href="#">🥇Certificates and Recognitions</a></li>
+                        <li><a href="/" @click=${(e: Event) => this.handleNavigation(e, '/')}>Home</a></li>
+                        <li><a href="/about" @click=${(e: Event) => this.handleNavigation(e, '/about')}>About</a></li>
                     </ul>
-                </div>
-                <div class="nav-right">
-                    <simple-button color="green" type="simple" text="Menu"/>
                 </div>
             </nav>
         `;
@@ -41,13 +45,11 @@ export class NavBar extends LitElement {
             width: 70%;
             border-radius: 8px;
             align-items: center;
-            overflow: visible; /* Asegura que el fondo no se desborde */
-            /* transparencies */
+            overflow: visible;
             background-color: rgba(255, 255, 255, 0.8);
-            z-index: 10; // procura que el objeto siempre este por encima de los demas
-            backdrop-filter: blur(5px); /* Aplica el desenfoque al fondo */
-            -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
-            /* Shadows */
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.37);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
@@ -67,24 +69,17 @@ export class NavBar extends LitElement {
 
         .list {
             list-style: none;
-            display: none;
+            display: flex;
             padding: 0;
-            @media (min-width: 800px) {
-                display: flex;
-            }
-
-            li a {
-                color: var(--green);
-                margin-left: 8px;
-                text-decoration: none;
-            }
+            gap: 16px;
+        }
+        
+        .list a {
+            color: var(--green);
+            text-decoration: none;
         }
 
-        .nav-logo a:hover {
-            color: var(--primary);
-        }
-
-        .list li a:hover {
+        .list a:hover {
             color: var(--primary);
         }
     `;
